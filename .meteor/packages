@@ -19,3 +19,8 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 react
 fourseven:scss
 reywood:bootstrap3-sass
+meteorhacks:npm
+cosmos:browserify
+
+
+npm-container
