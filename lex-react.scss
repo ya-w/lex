@@ -1,0 +1,56 @@
+@import url(https://fonts.googleapis.com/css?family=Asap:400,700|Raleway:500,300);
+
+@import '{reywood:bootstrap3-sass}/assets/stylesheets/bootstrap/_variables';
+
+$text-color: #2D2D2D ;
+$font-family-base: 'Asap', sans-serif;
+$headings-font-family: 'Raleway', sans-serif;
+$headings-font-weight:    700 ;
+
+@import '{reywood:bootstrap3-sass}/bootstrap';
+
+
+.app.container {
+  max-width: $container-tablet ;
+}
+
+header {
+
+  h1 {
+
+    & > .logo {
+      margin-right: 15px ;
+      vertical-align: sub;
+    }
+
+    & > small {
+      white-space: nowrap;
+    }
+
+    @media (max-width: $container-tablet) and (orientation: portrait){
+      text-align: center;
+    }
+
+  }
+
+}
+
+.input-group-btn > .btn {
+  line-height: 1.428571429 ;
+}
+
+.list-group {
+  .close > .glyphicon {
+    right: -3px ;
+    font-size: 16px ;
+  }
+
+  .list-group-item-text {
+    margin: 10px auto ;
+  }
+
+}
+
+footer {
+  padding: 0 15px 10px;
+}
