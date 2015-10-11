@@ -24,3 +24,5 @@ cosmos:browserify
 
 
 npm-container
+sergeyt:typeahead
+underscorestring:underscore.string

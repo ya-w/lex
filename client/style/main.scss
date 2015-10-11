@@ -39,6 +39,14 @@ header {
   line-height: 1.428571429 ;
 }
 
+.term-form {
+  .input-group-btn > .btn-default {
+    background: $gray-lighter ;
+    color: $gray ;
+  }
+}
+
+
 .list-group {
   .close > .glyphicon {
     right: -3px ;

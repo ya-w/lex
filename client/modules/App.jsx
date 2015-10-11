@@ -4,10 +4,6 @@ App = React.createClass({
   // This mixin makes the getMeteorData method work
   mixins: [ReactMeteorData],
 
-  getInitialState() {
-    return {}
-  },
-
   // Loads items from the Terms collection and puts them on this.data.Terms
   getMeteorData() {
 
@@ -17,7 +13,7 @@ App = React.createClass({
     // query = {checked: {$ne: true}};
 
     return {
-      terms: Terms.find(query, {sort: {slug: -1}}).fetch(),
+      terms: Terms.find(query, {sort: {slug: 1}}).fetch(),
       count: Terms.find({}).count()
     };
   },
@@ -36,25 +32,6 @@ App = React.createClass({
             <img className="logo" src="img/logo.svg"/>
             <small>crypto name dropping</small>
           </h1>
-
-
-
-          {/*
-            this.data.currentUser ?
-            <form className="new-Term" >
-
-              <div className="form-group">
-                <div className="input-group">
-                  <input type="text" ref="textInput" className="form-control" placeholder="Add new term"/>
-                  <div className="input-group-btn">
-                    <button className="btn btn-default" type="submit">
-                        <span className="glyphicon glyphicon-plus"></span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </form> : ''
-          */}
 
         </header>
 

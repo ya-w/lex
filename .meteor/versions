@@ -63,6 +63,7 @@ reload@1.1.4
 retry@1.0.4
 reywood:bootstrap3-sass@3.3.5_2
 routepolicy@1.0.6
+sergeyt:typeahead@0.11.1_5
 session@1.1.1
 spacebars@1.0.7
 spacebars-compiler@1.0.7
@@ -72,6 +73,7 @@ templating-tools@1.0.0
 tracker@1.0.9
 ui@1.0.8
 underscore@1.0.4
+underscorestring:underscore.string@3.2.2
 url@1.0.5
 webapp@1.2.2
 webapp-hashing@1.0.5
