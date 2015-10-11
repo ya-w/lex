@@ -5,13 +5,14 @@ App = React.createClass({
   mixins: [ReactMeteorData],
 
   getInitialState() {
-    return {
-      data: []
-    }
+    return {}
   },
 
   // Loads items from the Terms collection and puts them on this.data.Terms
   getMeteorData() {
+
+    Meteor.subscribe("terms");
+
     let query = {};
     // query = {checked: {$ne: true}};
 
@@ -61,7 +62,7 @@ App = React.createClass({
         <TermList data={this.data.terms} />
 
         <footer>
-          <span>ya-w / lex - 0.1.0 - {this.data.count} terms</span>
+          <span>serving {this.data.count} terms</span>
         </footer>
       </div>
     );

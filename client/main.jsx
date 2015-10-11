@@ -1,6 +1,15 @@
-  Meteor.subscribe("terms");
+const {
+  Router,
+  Route
+} = ReactRouter;
 
-  Meteor.startup(function () {
-    // Use Meteor.startup to render the component after the page is ready
-    React.render(<App />, document.getElementById("render-target"));
-  });
+Meteor.startup(function () {
+  let history = CreateBrowserHistory() ;
+
+  React.render((
+    <Router history={history}>
+      <Route path="/" component={App}/>
+    </Router>
+  ), document.getElementById("render-target"));
+  
+});

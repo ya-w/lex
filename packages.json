@@ -1,4 +1,5 @@
 {
-  "react-router": "0.13.4",
-  "externalify": "0.1.0"
+  "react-router": "1.0.0-rc3",
+  "externalify": "0.1.0",
+  "history": "1.12.4"
 }
