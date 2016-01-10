@@ -191,6 +191,9 @@
         }
       }
     },
+    "react-kit": {
+      "version": "0.1.7"
+    },
     "react-router": {
       "version": "1.0.0-rc3",
       "dependencies": {

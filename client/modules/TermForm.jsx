@@ -3,8 +3,14 @@ TermForm = React.createClass({
 
   getInitialState() {
     return {
-      notFound: false,
-      edit: false,
+      search: {
+        btn: "default",
+        icon: "search"
+      },
+      edit: {
+        btn: "primary hidden",
+        icon: "plus"
+      },
       valid: false
     };
   },
@@ -29,26 +35,47 @@ TermForm = React.createClass({
 
   },
 
-  handleClick(event) {
-    var slug = React.findDOMNode(this.refs.slug);
+  handleSearch(event) {
+    if (!hasClass(this.refs.panel,"hidden")) {
+      addClass(this.refs.panel,"hidden");
+      addClass(this.refs.btnEdit,"btn-primary");
+      removeClass(this.refs.btnEdit,"btn-success");
+    }
+  },
 
-    if(this.state.edit){
+  handleEdit(event) {
+
+    if (hasClass(this.refs.panel,"hidden")) {
+      removeClass(this.refs.panel,"hidden");
+      addClass(this.refs.btnEdit,"btn-success");
+      removeClass(this.refs.btnEdit,"btn-primary");
+      this.handleChange(event) ;
+    } else {
       this.handleSubmit(event) ;
-    } else if(this.state.notFound){
-      this.setState({edit:!this.state.edit}) ;
     }
 
   },
 
   handleChange(event) {
-    var slug = React.findDOMNode(this.refs.slug);
-    var description = React.findDOMNode(this.refs.description);
+    var slug = React.findDOMNode(this.refs.slug).value.trim();
+    var description = React.findDOMNode(this.refs.description).value.trim();
 
-    var validComp = slug.value.trim().length > 2 ;
-    this.setState({notFound:validComp}) ;
+    var validSlug = slug.length > 2 ;
+    if (validSlug) {
+      removeClass(this.refs.btnEdit,"hidden");
+    } else if ( hasClass(this.refs.panel,"hidden") && !hasClass(this.refs.btnEdit,"hidden" )) {
+      addClass(this.refs.btnEdit,"hidden");
+    }
 
-    validComp &= description.value.trim().length > 2 ;
-    this.setState({valid:validComp}) ;
+    var validDesc = description.length > 2 ;
+    if (validDesc) {
+      removeClass(this.refs.btnEdit,"disabled");
+    } else if (!hasClass(this.refs.btnEdit,"disabled")) {
+      addClass(this.refs.btnEdit,"disabled");
+    }
+
+    this.setState({valid:( validSlug && validDesc )})
+
 
   },
 
@@ -59,24 +86,19 @@ TermForm = React.createClass({
       icon: "search"
     } ;
 
+    var search = {
+      btn: "default",
+      icon: "search"
+    } ;
+    var edit = {
+      btn: "primary",
+      icon: "plus"
+    } ;
+
     var panel = {
       displayClass: "hidden"
     } ;
 
-    if (this.state.notFound) {
-      submit.btn = "primary" ;
-      submit.icon = "plus" ;
-    }
-
-    if (this.state.edit) {
-      submit.btn = "success disabled" ;
-      submit.icon = "plus" ;
-      panel.displayClass = "visible" ;
-    }
-
-    if (this.state.valid) {
-      submit.btn = "success" ;
-    }
 
     return (
       <form className="term-form" onSubmit={this.handleSubmit}>
@@ -84,13 +106,16 @@ TermForm = React.createClass({
           <div className="input-group">
             <input type="text" ref="slug" name="slug" className="form-control" placeholder="slug" tabIndex="1" value={this.props.slug} onChange={this.handleChange}/>
             <div className="input-group-btn">
-              <button ref="btn" className={ "btn btn-" + submit.btn } type="button" onClick={this.handleClick} tabIndex="3">
-                  <span className={ "glyphicon glyphicon-" + submit.icon }></span>
+              <button ref="btnSearch" className="btn btn-default" type="button" onClick={this.handleSearch} tabIndex="3">
+                  <span className="glyphicon glyphicon-search" ></span>
+              </button>
+              <button ref="btnEdit" className="btn btn-primary hidden" type="button" onClick={this.handleEdit} tabIndex="3">
+                  <span className="glyphicon glyphicon-plus" ></span>
               </button>
             </div>
           </div>
         </div>
-        <div className={ "edit-panel form-group " + panel.displayClass }>
+        <div ref="panel" className={ "edit-panel form-group " + panel.displayClass }>
           <textarea ref="description" name="description" className="form-control" rows="4" tabIndex="2" placeholder="description" value={this.props.description}  onChange={this.handleChange} />
         </div>
       </form>
